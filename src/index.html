@@ -21,8 +21,9 @@
           <div class="input-group">
             <label for="string">Verkefni:</label>
             <input
+              class="input"
               type="text"
-              name="string"
+              name="query"
               id="string"
               required
               placeholder="Heiti verkefnis"
@@ -32,9 +33,9 @@
           <button type="submit">Bæta við</button>
         </form>
 
-        <p class="empty">Engin atriði til að sýna!</p>
+        <p class="empty hidden">Engin atriði til að sýna!</p>
 
-        <ul class="list hidden">
+        <ul class="list">
           <!-- Atriði bætast við hér með JavaScript, fjarlægðu athugasemd til að sjá dæmi -->
           <!--
           <li class="finished">

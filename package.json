@@ -7,8 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "parcel",
-    "dev": "parcel",
+    "start": "parcel ",
+    "dev": "parcel --no-cache",
     "build": "parcel build",
     "lint": "eslint src"
   },

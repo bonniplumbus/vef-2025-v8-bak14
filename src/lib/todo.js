@@ -20,7 +20,9 @@ function toggleTodoItemStatus(item, isShown = true) {
  * @returns {void}
  */
 function removeTodoItem(item) {
-  /* TODO útfæra */
+  console.log('EYÐA', item);
+
+  alert('viltu eyða?')
 }
 
 /**
@@ -56,8 +58,49 @@ function updateStats(todoList) {
  * @param {string} text
  * @return {void}
  */
-function createTodoItem(todolist, text) {
-  /* TODO útfæra */
+export function createTodoItem(todolist, text) {
+  // console.log('hi frá createTodoItem', todolist, text)
+
+  /*
+<li>
+  <label>
+    <input type="checkbox" name="finished"  />
+    <span class="item"
+      >Dæmi um atriði með löngum texta og orði sem er mjög langt
+      Vaðlaheiðarvegavinnuverkfærageymsluskúrslyklakippuhringurinn</span
+    >
+  </label>
+  <button title="Fjarlægja atriði">🗑️</button>
+</li>
+  */
+ const li = document.createElement('li');
+
+ const button = document.createElement('button');
+ button.textContent = '🗑️'
+ button.addEventListener('click', () => {
+  removeTodoItem(li);
+ });
+
+ const input = document.createElement('input')
+ input.setAttribute('type', 'checkbox');
+ input.setAttribute('name', 'finished');
+ input.addEventListener('change', () => {
+  console.log('input', input.checked)
+ })
+
+ const span = document.createElement('span');
+ span.classList.add('item')
+ span.textContent = text;
+
+ const label = document.createElement('label')
+
+ label.appendChild(input);
+ label.appendChild(span);
+ li.appendChild(label);
+ li.appendChild(button);
+
+ const list = todolist.querySelector('ul.list')
+ list?.appendChild(li)
 }
 
 /**
