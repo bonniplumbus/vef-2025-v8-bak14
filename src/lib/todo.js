@@ -21,8 +21,18 @@ function toggleTodoItemStatus(item, isShown = true) {
  */
 function removeTodoItem(item) {
   console.log('EYÐA', item);
+  const spanEl = item.querySelector('span.item')
 
-  alert('viltu eyða?')
+  let text = '<unknown item>';
+  if (!spanEl) {
+    console.warn('cannot find spanEl')
+  } else {
+    text = spanEl.textContent
+  }
+
+  if (confirm(`Viltu eyða „${text}“?`)) {
+    item.remove();
+  }
 }
 
 /**
