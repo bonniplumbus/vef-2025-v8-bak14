@@ -1,4 +1,4 @@
-import { createTodoItem } from "./lib/todo.js";
+import { updateStats, createTodoItem } from "./lib/todo.js";
 
 /* TODO import á allt viðeigandi úr ./lib/todo.js */
 /**
@@ -28,6 +28,7 @@ function initialize(todolist) {
     // TODO staðfesta að value er OK
 
     createTodoItem(todolist, value);
+    updateStats(todolist);
   })
   
   
