@@ -59,26 +59,26 @@ function clearList(todolist) {
  * @return {void}
  */
 export function updateStats(todolist) {
-  const finishedEl = todolist.querySelector('.stats .finished')
-  const unfinishedEl = todolist.querySelector('.stats .unfinished')
+  const finishedEl = todolist.querySelector(".stats .finished");
+  const unfinishedEl = todolist.querySelector(".stats .unfinished");
 
   if (!finishedEl || !unfinishedEl) {
-    console.warn('could not find finished/unfinished nodes')
-    return
+    console.warn("could not find finished/unfinished nodes");
+    return;
   }
 
-  const allItems = todolist.querySelectorAll('.list li')
-  const allFinishedItems = todolist.querySelectorAll('.list li.finished')
+  const allItems = todolist.querySelectorAll(".list li");
+  const allFinishedItems = todolist.querySelectorAll(".list li.finished");
 
   if (!allItems || !allFinishedItems) {
-    return
+    return;
   }
 
-  const finishedCount = allFinishedItems.length
+  const finishedCount = allFinishedItems.length;
   const unfinishedCount = allItems.length - finishedCount;
 
-  finishedEl.textContent = finishedCount.toString()
-  unfinishedEl.textContent = unfinishedCount.toString()
+  finishedEl.textContent = finishedCount.toString();
+  unfinishedEl.textContent = unfinishedCount.toString();
 }
 
 /**
