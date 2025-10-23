@@ -145,6 +145,11 @@ main {
   }
 }
 
+li.finished .item {
+  text-decoration: line-through;
+  color: #777;
+}
+
 .buttons {
   display: flex;
   flex-wrap: wrap;

@@ -1,49 +1,57 @@
-import { updateStats, createTodoItem } from "./lib/todo.js";
+import { updateStats, createTodoItem, clearList, toggleFinished, checkListState } from "./lib/todo.js";
+// ^ make sure the export in todo.js is named `toggleFinished` (lowercase t)
 
-/* TODO import á allt viðeigandi úr ./lib/todo.js */
-/**
- * @param {HTMLElement} todolist
- */
 function initialize(todolist) {
-  const form = todolist.querySelector('.form')
-
+  const form = todolist.querySelector(".form");
   if (!form) {
-    console.error('form fannst ekki, hætti')
+    console.error("form fannst ekki, hætti");
     return;
   }
 
-  console.log(form)
-
-  form.addEventListener('submit', (e) => {
+  // Submit: create one item
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    
-    const input = todolist.querySelector('input')
 
+    const input = todolist.querySelector("input");
     if (!input) {
-      console.error('input fannst ekki');
+      console.error("input fannst ekki");
       return;
     }
-    const value = input.value;
 
-    // TODO staðfesta að value er OK
+    const value = input.value.trim();
+    if (!value) return; // staðfesta að value er OK
 
     createTodoItem(todolist, value);
     updateStats(todolist);
-  })
-  
-  
-  /* TODO setja submit event handler á form */
-  /* TODO finna gildi textareits í formi innan event handlers og búa til todo item útfrá því */
-  /* TODO tengja „Fela kláruð atriði“ og „Hreinsa lista“ takka */
-}
+    input.value = "";
+  });
 
+  // Clear-all button
+  const clearButton = todolist.querySelector(".clear-all");
+  if (clearButton) {
+    clearButton.addEventListener("click", () => {
+      clearList(todolist);
+      updateStats(todolist);
+    });
+  }
 
-// Finnum todo lista og keyrum fall sem setur allt upp
+  const toggleBtn = todolist.querySelector(".toggle-finished");
+  if(toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      const shown = toggleFinished(todolist);
+      console.log("Kláruð atriði sýnileg?", shown);
+
+      updateStats(todolist);
+      checkListState(todolist);
+    })
+  }
+};
+
+// Finnum todo lista og setjum allt upp
 const todoList = document.querySelector(".todo-list");
-
-// Viljum vera viss um að todoList hafi fundist og sé HTMLElement
 if (todoList && todoList instanceof HTMLElement) {
   initialize(todoList);
 } else {
   console.error("no todo list found");
 }
+
